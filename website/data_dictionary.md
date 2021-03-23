@@ -199,37 +199,211 @@ active-nav: understanding-the-data-nav
                                 <th colspan="2">Identifiers are grouped by FHIRv3 Data Objects</th>
                             </tr>
                             <tr>
-                                <th>Element ID</th>
-                                <th>Definition</th>
-                                <th>Cardinality</th>
-                                <th>Terminology Binding</th>
-                                <th>Type</th>
+                                <th>Production elements - STU3</th>
+                                <th>Description</th>
+                                <th>Samples</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="section-header" colspan="5"><a id="Patient">Patient</a></td>
+                                <td class="section-header" colspan="5"><a id="Patient">Dates</a></td>
                             </tr>
                             <tr class="bg-white">
-                                <td>Patient.Identfier</td>
-                                <td>A CCW unique identifier for this patient in a form of Patient &lt;identifier&gt; -
-                                    Display
-                                    MBI.</td>
-                                <td>1..1</td>
-                                <td></td>
+                                <td>eob.billablePeriod</td>
+                                <td>The billable period for which charges are being submitted.</td>
                                 <td></td>
                             </tr>
                             <tr>
-                                <td class="section-header" colspan="5"><a id="BillablePeriod">Billable Period</a></td>
+                                <td>eob.billablePeriod.start</td>
+                                <td>Starting time with inclusive boundary</td>
+                                <td>1999-12-01</td>
                             </tr>
                             <tr class="bg-white">
-                                <td>ExplanationOfBenefit.billablePeriod</td>
-                                <td>The billable period for which charges are being submitted.</td>
-                                <td>0..1</td>
-                                <td></td>
-                                <td><a target="_blank" href="http://hl7.org/fhir/STU3/datatypes.html#Period">Period</a>
-                                </td>
+                                <td>eob.billablePeriod.end</td>
+                                <td>End time with inclusive boundary, if not ongoing</td>
+                                <td>1999-12-01</td>
                             </tr>
+                            <tr>
+                                <td>eob.item[].servicedPeriod</td>
+                                <td>The date or dates when the enclosed suite of services were performed or completed.</td>
+                                <td></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.item[].servicedDate</td>
+                                <td>A date, or partial date (e.g. just year or year + month) as used in human communication. There is no time zone. Dates SHALL be valid dates</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>eob.item[].servicedPeriod.end</td>
+                                <td>Starting time with inclusive boundary</td>
+                                <td>2000-10-01</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.item[].servicedPeriod.start</td>
+                                <td>End time with inclusive boundary, if not ongoing</td>
+                                <td>2000-10-01</td>
+                            </tr>
+                            <tr>
+                                <td>eob.procedure[].date</td>
+                                <td>Date and optionally time the procedure was performed .</td>
+                                <td>1999-09-01T00:00:00+00:00</td>
+                            </tr>
+                            <tr>
+                                <td class="section-header" colspan="5"><a id="BillablePeriod">Provider</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.item[].service.coding[]</td>
+                                <td>Careteam applicable for this service or product line.</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>eob.careTeam[].responsible</td>
+                                <td>The practitioner who is billing and responsible for the claimed services rendered to the patient</td>
+                                <td></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.careTeam[].qualification</td>
+                                <td>The qualification which is applicable for this service</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>eob.careTeam[].qualification.coding[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>code, display, system</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.careTeam[].qualification.coding[].code</td>
+                                <td>provider speciality code</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>eob.careTeam[].qualification.coding[].display</td>
+                                <td>provider speciality description</td>
+                                <td></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.careTeam[].qualification.coding[].system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/variables/prvdr_spclty">https://bluebutton.cms.gov/resources/variables/prvdr_spclty</a></td>
+                            </tr>
+                            <tr>
+                                <td>eob.careTeam[]</td>
+                                <td>The members of the team who provided the overall service as well as their role and whether responsible and qualifications</td>
+                                <td></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.careTeam[].provider</td>
+                                <td>The members of the team who provided the overall service.</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>eob.careTeam[].provider.display</td>
+                                <td>Provider name</td>
+                                <td></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.careTeam[].provider.identifier</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>system, value</td>
+                            </tr>
+                            <tr>
+                                <td>eob.careTeam[].provider.identifier.system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="http://hl7.org/fhir/sid/us-npi">http://hl7.org/fhir/sid/us-npi</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.careTeam[].provider.identifier.value</td>
+                                <td>National Provider Identifier</td>
+                                <td>1558444216</td>
+                            </tr>
+                            <tr>
+                                <td>eob.careTeam[].role</td>
+                                <td>The lead, assisting or supervising practitioner and their discipline if a multidisiplinary team.</td>
+                                <td></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.careTeam[].role.coding[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>code, display, system</td>
+                            </tr>
+                            <tr>
+                                <td>eob.careTeam[].role.coding[].code</td>
+                                <td>Claim Care Team Role Codes</td>
+                                <td>primary, other, assist</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.careTeam[].role.coding[].display</td>
+                                <td>Claim Care Team Role Codes</td>
+                                <td>Primary provider, Assisting Provider, Other</td>
+                            </tr>
+                            <tr>
+                                <td>eob.careTeam[].role.coding[].system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="http://hl7.org/fhir/claimcareteamrole">http://hl7.org/fhir/claimcareteamrole</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.careTeam[].sequence</td>
+                                <td>Sequence of careteam which serves to order and provide a link.</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>eob.careTeam[].extension[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>url, valueCoding</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.careTeam[].extension[].url</td>
+                                <td>URL</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>eob.careTeam[].extension[].valueCoding</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>code, display, system</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.careTeam[].extension[].valueCoding.code</td>
+                                <td>Provider type code</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>eob.careTeam[].extension[].valueCoding.display</td>
+                                <td>Provider type code description</td>
+                                <td></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.careTeam[].extension[].valueCoding.system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/variables/carr_line_prvdr_type_cd">https://bluebutton.cms.gov/resources/variables/carr_line_prvdr_type_cd</a> | <a target="_blank" href="https://bluebutton.cms.gov/resources/variables/prtcptng_ind_cd">https://bluebutton.cms.gov/resources/variables/prtcptng_ind_cd</a></td>
+                            </tr>
+                            <tr>
+                                <td>eob.provider</td>
+                                <td>The provider which is responsible for the claim.</td>
+                                <td></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.provider.identifier</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>system, value</td>
+                            </tr>
+                            <tr>
+                                <td>eob.provider.identifier.system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/variables/prvdr_num">https://bluebutton.cms.gov/resources/variables/prvdr_num</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.provider.identifier.value</td>
+                                <td>Provider identifier</td>
+                                <td>999999</td>
+                            </tr>
+
+
+
+
+
+
+
+
                             <tr>
                                 <td class="section-header" colspan="5"><a id="CareTeam">Care Team</a></td>
                             </tr>
