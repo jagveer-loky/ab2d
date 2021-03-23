@@ -396,25 +396,281 @@ active-nav: understanding-the-data-nav
                                 <td>Provider identifier</td>
                                 <td>999999</td>
                             </tr>
-
-
-
-
-
-
-
-
                             <tr>
-                                <td class="section-header" colspan="5"><a id="CareTeam">Care Team</a></td>
+                                <td class="section-header" colspan="5"><a id="CareTeam">Diagnosis</a></td>
                             </tr>
                             <tr class="bg-white">
-                                <td>ExplanationOfBenefit.careTeam</td>
-                                <td>The members of the team who provided the overall service as well as their role and
-                                    whether responsible and qualifications.</td>
-                                <td>0..*</td>
-                                <td></td>
+                                <td>eob.diagnosis[]</td>
+                                <td>Ordered list of patient diagnosis for which care is sought.</td>
                                 <td></td>
                             </tr>
+                            <tr>
+                                <td>eob.diagnosis[].diagnosisCodeableConcept</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>coding</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.diagnosis[].diagnosisCodeableConcept.coding[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>code, display, system</td>
+                            </tr>
+                            <tr>
+                                <td>eob.diagnosis[].diagnosisCodeableConcept.coding[].code</td>
+                                <td>Diagnosis code</td>
+                                <td>37421</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.diagnosis[].diagnosisCodeableConcept.coding[].display</td>
+                                <td>Diagnosis code description</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>eob.diagnosis[].diagnosisCodeableConcept.coding[].system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="http://hl7.org/fhir/sid/icd-9-cm">http://hl7.org/fhir/sid/icd-9-cm </a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.diagnosis[].extension[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>url, valueCoding</td>
+                            </tr>
+                            <tr>
+                                <td>eob.diagnosis[].extension[].url</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/assets/ig/StructureDefinition-bluebutton-inpatient-clm-poa-ind-sw1-extension/">https://bluebutton.cms.gov/assets/ig/StructureDefinition-bluebutton-inpatient-clm-poa-ind-sw1-extension/</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.diagnosis[].extension[].valueCoding</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>code, display, system</td>
+                            </tr>
+                            <tr>
+                                <td>eob.diagnosis[].extension[].valueCoding.code</td>
+                                <td>Present on admission codes</td>
+                                <td>U, N, 0, Y</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.diagnosis[].extension[].valueCoding.display</td>
+                                <td>Present on admission descriptions</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>eob.diagnosis[].extension[].valueCoding.system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/variables/clm_poa_ind_sw1/">https://bluebutton.cms.gov/resources/variables/clm_poa_ind_sw1/</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.diagnosis[].packageCode</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>coding</td>
+                            </tr>
+                            <tr>
+                                <td>eob.diagnosis[].packageCode.coding[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>code, system</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.diagnosis[].packageCode.coding[].code</td>
+                                <td>DRG code</td>
+                                <td>127</td>
+                            </tr>
+                            <tr>
+                                <td>eob.diagnosis[].packageCode.coding[].system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/variables/clm_drg_cd/">https://bluebutton.cms.gov/resources/variables/clm_drg_cd/</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.diagnosis[].sequence</td>
+                                <td>Diagnosis sequence</td>
+                                <td>6,11,9,2,3</td>
+                            </tr>
+                            <tr>
+                                <td>eob.diagnosis[].type[]</td>
+                                <td>The type of the Diagnosis, for example: admitting, primary, secondary, discharge.</td>
+                                <td>coding</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.diagnosis[].type[].coding[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>code, display, system</td>
+                            </tr>
+                            <tr>
+                                <td>eob.diagnosis[].type[].coding[].code</td>
+                                <td>Diagnosis Type</td>
+                                <td>Admitting, Principal</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.diagnosis[].type[].coding[].display</td>
+                                <td>Diagnosis Type - description</td>
+                                <td>The single medical diagnosis that is most relevant to the patient's chief complaint or need for treatment.","The diagnosis given as the reason why the patient was admitted to the hospital</td>
+                            </tr>
+                            <tr>
+                                <td>eob.diagnosis[].type[].coding[].system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/codesystem/diagnosis-type/">https://bluebutton.cms.gov/resources/codesystem/diagnosis-type/</a></td>
+                            </tr>
+                            <tr>
+                                <td class="section-header" colspan="5"><a id="BillablePeriod">Facilty/Organization</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.facility</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>display, extension, identifiier</td>
+                            </tr>
+                            <tr>
+                                <td>eob.facility.display</td>
+                                <td>Facility name</td>
+                                <td></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.facility.extension[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>url, valueCoding</td>
+                            </tr>
+                            <tr>
+                                <td>eob.facility.extension[].url</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/variables/clm_fac_type_cd/">https://bluebutton.cms.gov/resources/variables/clm_fac_type_cd/</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.facility.extension[].valueCoding</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>code, display, system</td>
+                            </tr>
+                            <tr>
+                                <td>eob.facility.extension[].valueCoding.code</td>
+                                <td>The type of facility: code</td>
+                                <td>8,7,1</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.facility.extension[].valueCoding.display</td>
+                                <td>The type of facility: description</td>
+                                <td>Clinic services or hospital-based renal dialysis facility</td>
+                            </tr>
+                            <tr>
+                                <td>eob.facility.extension[].valueCoding.system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/variables/clm_fac_type_cd/">https://bluebutton.cms.gov/resources/variables/clm_fac_type_cd/</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.facility.identifier</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>system, value</td>
+                            </tr>
+                            <tr>
+                                <td>eob.facility.identifier.system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="http://hl7.org/fhir/sid/us-npi">http://hl7.org/fhir/sid/us-npi</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.facility.identifier.value</td>
+                                <td>NPI</td>
+                                <td>"999999999999"</td>
+                            </tr>
+                            <tr>
+                                <td>eob.organization</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>display, identifier</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.organization.display</td>
+                                <td>Organization Name</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>eob.organization.identifier</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>system, value</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.organization.identifier.system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="http://hl7.org/fhir/sid/us-npi">http://hl7.org/fhir/sid/us-npi</a></td>
+                            </tr>
+                            <tr>
+                                <td>eob.organization.identifier.value</td>
+                                <td>NPI</td>
+                                <td>"999999999999"</td>
+                            </tr>
+                            <tr>
+                                <td class="section-header" colspan="5"><a id="BillablePeriod">Location</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.item[].locationAddress</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>State</td>
+                            </tr>
+                            <tr>
+                                <td>eob.item[].locationAddress.state</td>
+                                <td>State</td>
+                                <td>two character state</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.item[].locationCodeableConcept</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>coding</td>
+                            </tr>
+                            <tr>
+                                <td>eob.item[].locationCodeableConcept.coding[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>code, display, system</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.item[].locationCodeableConcept.coding[].code</td>
+                                <td>Place of service code</td>
+                                <td>"99"</td>
+                            </tr>
+                            <tr>
+                                <td>eob.item[].locationCodeableConcept.coding[].display</td>
+                                <td>Place of service description</td>
+                                <td>Other Place of Service. Other place of service not identified above.</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.item[].locationCodeableConcept.coding[].system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/variables/line_place_of_srvc_cd/">https://bluebutton.cms.gov/resources/variables/line_place_of_srvc_cd/</a></td>
+                            </tr>
+                            <tr>
+                                <td>eob.item[].locationCodeableConcept.extension[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>url, valueCoding, valueIdentifier</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.item[].locationCodeableConcept.extension[].url</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/variables/carr_line_prcng_lclty_cd">https://bluebutton.cms.gov/resources/variables/carr_line_prcng_lclty_cd</a> | 
+                                <a target="_blank" href="https://bluebutton.cms.gov/resources/variables/prvdr_zip">https://bluebutton.cms.gov/resources/variables/prvdr_zip</a> | 
+                                <a target="_blank" href="https://bluebutton.cms.gov/resources/variables/prvdr_state_cd">https://bluebutton.cms.gov/resources/variables/prvdr_state_cd</a> </td>
+                            </tr>
+                            <tr>
+                                <td>eob.item[].locationCodeableConcept.extension[].valueCoding</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>code, display, system</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.item[].locationCodeableConcept.extension[].valueCoding.code</td>
+                                <td>Location code</td>
+                                <td>99999</td>
+                            </tr>
+                            <tr>
+                                <td>eob.item[].locationCodeableConcept.extension[].valueCoding.display</td>
+                                <td>Location description</td>
+                                <td>With 000 county code is American Samoa; otherwise unknown</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.item[].locationCodeableConcept.extension[].valueCoding.system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/variables/carr_line_prcng_lclty_cd">https://bluebutton.cms.gov/resources/variables/carr_line_prcng_lclty_cd</a> | 
+                                <a target="_blank" href="https://bluebutton.cms.gov/resources/variables/prvdr_zip">https://bluebutton.cms.gov/resources/variables/prvdr_zip</a> | 
+                                <a target="_blank" href="https://bluebutton.cms.gov/resources/variables/prvdr_state_cd">https://bluebutton.cms.gov/resources/variables/prvdr_state_cd</a></td>
+                            </tr>
+
+
+
+
+
+
+
                             <tr>
                                 <td>ExplanationOfBenefit.careTeam.sequence</td>
                                 <td>Sequence of careteam which serves to order and provide a link.</td>
