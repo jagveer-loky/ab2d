@@ -129,23 +129,82 @@ active-nav: understanding-the-data-nav
 </style>
 
 <script>
-    window.onscroll = function () { scrollSpy() };
-    var indexOffset = 0
-    $(document).ready(() => {
-        offset = $("#index").offset().top - 72
-    })
-
-    function scrollSpy() {
-        if (window.pageYOffset > offset) {
-            $("#index").addClass("sticky");
-            $("#scroll-to-top").addClass("show");
-        } else {
-            $("#index").removeClass("sticky");
-            $("#scroll-to-top").removeClass("show");
+    let scrollLock = false;
+    
+    const stepMappings = {
+        'dates': 'dates-content',
+        'provider': 'provider-content',
+        'diagnosis': 'diagnosis-content',
+        'faculty-organization': 'faculty-organization-content',
+        'location': 'location-content',
+        'procedure': 'procedure-content',
+        'services': 'services-content',
+        'claim': 'claim-content',
+        'patient': 'patient-content',
+        'meta': 'meta-content',
+    };
+    $(document).ready(function() {
+        const offset = 100;
+    
+        $('.step-accessing-claims').on('click', function(event) {
+            scrollLock = true;
+            highlightNav($(this), true);
+        });
+        
+        $(window).scroll(function() {
+            if(scrollLock) {
+                return;
+            }
+                
+            if($(this).scrollTop() < $('#provider-content').offset().top - offset) {
+                highlightNav($('#dates'), false);
+            } else if($(this).scrollTop() >= $('#provider-content').offset().top - offset && $(this).scrollTop() < $('#diagnosis-content').offset().top - offset) {
+                highlightNav($('#provider'), false);
+            } else if($(this).scrollTop() >= $('#diagnosis-content').offset().top - offset && $(this).scrollTop() < $('#faculty-organization-content').offset().top - offset) {
+                highlightNav($('#diagnosis'), false);
+            } else if($(this).scrollTop() >= $('#faculty-organization-content').offset().top - offset && $(this).scrollTop() < $('#location-content').offset().top - offset) {
+                highlightNav($('#faculty-organization'), false);
+            } else if($(this).scrollTop() >= $('#location-content').offset().top - offset && $(this).scrollTop() < $('#procedure-content').offset().top - offset) {
+                highlightNav($('#location'), false);
+            } else if($(this).scrollTop() >= $('#procedure-content').offset().top - offset && $(this).scrollTop() < $('#services-content').offset().top - offset) {
+                highlightNav($('#procedure'), false);
+            } else if($(this).scrollTop() >= $('#services-content').offset().top - offset && $(this).scrollTop() < $('#claim-content').offset().top - offset) {
+                highlightNav($('#services'), false);
+            } else if($(this).scrollTop() >= $('#claim-content').offset().top - offset && $(this).scrollTop() < $('#patient-content').offset().top - offset) {
+                highlightNav($('#claim'), false);
+            } else if($(this).scrollTop() >= $('#patient-content').offset().top - offset && $(this).scrollTop() < $('#meta-content').offset().top - offset) {
+                highlightNav($('#patient'), false);
+            } else if($(this).scrollTop() >= $('#step-4-content').offset().top - offset) {
+                highlightNav($('#meta'), false);
+            }
+        });
+        
+        function highlightNav(id, doScroll) {
+            const stepId = id.attr('id');
+            const idToShow = stepMappings[stepId];
+            
+            $('.step-accessing-claims').each(function() {
+                $(this).removeClass('step-accessing-claims-active').addClass('step-accessing-claims-nonactive');
+                $(this).find('.step-claims-dash').hide();
+            });
+            
+            id.removeClass('step-accessing-claims-nonactive').addClass('step-accessing-claims-active');
+            id.find('.step-claims-dash').show();
+            
+            if(doScroll) {
+                $('html, body').animate({
+                    scrollTop: $('#' + idToShow).offset().top - offset + 2
+                }, 1000, function() {
+                  scrollLock = false;
+                });
+            }
         }
-
-
-    } 
+        
+        if (isIE()) {
+            const elements = $('.step-claims-menu');
+            Stickyfill.add(elements);
+        }
+    });
 </script>
 
 <section class="bg-light-grey page-section py-5" role="main" id="Top">
@@ -157,40 +216,43 @@ active-nav: understanding-the-data-nav
     <a href="#Top" id="scroll-to-top">
         <i class="fas fa-chevron-up"></i>
     </a>
-    <div class="container-fluid bg-light-grey">
+    <div class="container bg-light-grey">
         <div class="row">
-            <div class="col-lg-2">
-                <table id="index">
-                    <tr>
-                        <td><a href="#Patient">Patient</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#BillablePeriod">Billable Period</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#CareTeam">Care Team</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#Claims">Claims</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#Diagnosis">Diagnosis</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#Item">Item</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#Meta">Meta</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#Procedure">Procedure</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#Provider">Provider</a></td>
-                    </tr>
-                </table>
+            <div class="col-lg-6 step-claims-menu-col" style="max-width: 250px;">
+                <div class="step-claims-menu">
+                    <div id="dates" class="step-accessing-claims step-accessing-claims-active">
+                        Dates <span class="step-claims-dash"></span>
+                    </div> 
+                    <div id="provider" class="step-accessing-claims step-accessing-claims-nonactive">
+                        Provider <span class="step-claims-dash" style="display: none;"></span>
+                    </div>
+                    <div id="diagnosis" class="step-accessing-claims step-accessing-claims-nonactive">
+                        Diagnosis <span class="step-claims-dash" style="display: none;"></span>
+                    </div>
+                    <div id="faculty-organization" class="step-accessing-claims step-accessing-claims-nonactive">
+                        Faculty / Organization <span class="step-claims-dash" style="display: none;"></span>
+                    </div>
+                    <div id="location" class="step-accessing-claims step-accessing-claims-nonactive">
+                        Location <span class="step-claims-dash" style="display: none;"></span>
+                    </div>
+                    <div id="procedure" class="step-accessing-claims step-accessing-claims-nonactive">
+                        Procedure <span class="step-claims-dash" style="display: none;"></span>
+                    </div>
+                    <div id="services" class="step-accessing-claims step-accessing-claims-nonactive">
+                        Services <span class="step-claims-dash" style="display: none;"></span>
+                    </div>
+                    <div id="claim" class="step-accessing-claims step-accessing-claims-nonactive">
+                        Claim <span class="step-claims-dash" style="display: none;"></span>
+                    </div>
+                    <div id="patient" class="step-accessing-claims step-accessing-claims-nonactive">
+                        Patient <span class="step-claims-dash" style="display: none;"></span>
+                    </div>
+                    <div id="meta" class="step-accessing-claims step-accessing-claims-nonactive">
+                        Meta <span class="step-claims-dash" style="display: none;"></span>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-10">
+            <div class="col">
                 <div class="data-table-wrapper">
                     <table class="data-table">
                         <thead>
@@ -206,7 +268,7 @@ active-nav: understanding-the-data-nav
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="section-header" colspan="5"><a id="Patient">Dates</a></td>
+                                <td class="section-header" colspan="5"><a id="dates-content">Dates</a></td>
                             </tr>
                             <tr class="bg-white">
                                 <td>eob.billablePeriod</td>
@@ -249,7 +311,7 @@ active-nav: understanding-the-data-nav
                                 <td>1999-09-01T00:00:00+00:00</td>
                             </tr>
                             <tr>
-                                <td class="section-header" colspan="5"><a id="BillablePeriod">Provider</a></td>
+                                <td class="section-header" colspan="5"><a id="provider-content">Provider</a></td>
                             </tr>
                             <tr class="bg-white">
                                 <td>eob.item[].service.coding[]</td>
@@ -397,7 +459,7 @@ active-nav: understanding-the-data-nav
                                 <td>999999</td>
                             </tr>
                             <tr>
-                                <td class="section-header" colspan="5"><a id="CareTeam">Diagnosis</a></td>
+                                <td class="section-header" colspan="5"><a id="diagnosis-content">Diagnosis</a></td>
                             </tr>
                             <tr class="bg-white">
                                 <td>eob.diagnosis[]</td>
@@ -510,7 +572,7 @@ active-nav: understanding-the-data-nav
                                 <td><a target="_blank" href="https://bluebutton.cms.gov/resources/codesystem/diagnosis-type/">https://bluebutton.cms.gov/resources/codesystem/diagnosis-type/</a></td>
                             </tr>
                             <tr>
-                                <td class="section-header" colspan="5"><a id="BillablePeriod">Facilty/Organization</a></td>
+                                <td class="section-header" colspan="5"><a id="faculty-organization-content">Facilty/Organization</a></td>
                             </tr>
                             <tr class="bg-white">
                                 <td>eob.facility</td>
@@ -593,7 +655,7 @@ active-nav: understanding-the-data-nav
                                 <td>"999999999999"</td>
                             </tr>
                             <tr>
-                                <td class="section-header" colspan="5"><a id="BillablePeriod">Location</a></td>
+                                <td class="section-header" colspan="5"><a id="location-content">Location</a></td>
                             </tr>
                             <tr class="bg-white">
                                 <td>eob.item[].locationAddress</td>
@@ -680,7 +742,7 @@ active-nav: understanding-the-data-nav
                                 <td></td>
                             </tr>
                             <tr>
-                                <td class="section-header" colspan="5"><a id="BillablePeriod">Procedure</a></td>
+                                <td class="section-header" colspan="5"><a id="procedure-content">Procedure</a></td>
                             </tr>
                             <tr class="bg-white">
                                 <td>eob.procedure[]</td>
@@ -718,7 +780,7 @@ active-nav: understanding-the-data-nav
                                 <td>6,2,3,1,4,5</td>
                             </tr>
                             <tr>
-                                <td class="section-header" colspan="5"><a id="Services">Services</a></td>
+                                <td class="section-header" colspan="5"><a id="services-content">Services</a></td>
                             </tr>
                             <tr class="bg-white">
                                 <td>eob.item[].service</td>
@@ -781,7 +843,7 @@ active-nav: understanding-the-data-nav
                                 <td>120,41,80,241,22,67,143</td>
                             </tr>
                              <tr>
-                                <td class="section-header" colspan="5"><a id="Claim">Claim</a></td>
+                                <td class="section-header" colspan="5"><a id="claim-content">Claim</a></td>
                             </tr>
                             <tr class="bg-white">
                                 <td>eob.precedence</td>
@@ -894,7 +956,7 @@ active-nav: understanding-the-data-nav
                                 <a target="_blank" href="http://hl7.org/fhir/ex-claimtype">http://hl7.org/fhir/ex-claimtype</a></td>
                             </tr>
                             <tr>
-                                <td class="section-header" colspan="5"><a id="Claim">Patient</a></td>
+                                <td class="section-header" colspan="5"><a id="patient-content">Patient</a></td>
                             </tr>
                             <tr class="bg-white">
                                 <td>eob.patient</td>
@@ -952,7 +1014,7 @@ active-nav: understanding-the-data-nav
                                 <td>null</td>
                             </tr>
                              <tr>
-                                <td class="section-header" colspan="5"><a id="Meta">Meta</a></td>
+                                <td class="section-header" colspan="5"><a id="meta-content">Meta</a></td>
                             </tr>
                             <tr class="bg-white">
                                 <td>eob.meta</td>
