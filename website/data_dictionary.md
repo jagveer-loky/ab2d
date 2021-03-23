@@ -195,8 +195,8 @@ active-nav: understanding-the-data-nav
                     <table class="data-table">
                         <thead>
                             <tr class="top-header">
-                                <th colspan="3">30 Definitions</th>
-                                <th colspan="2">Identifiers are grouped by FHIRv3 Data Objects</th>
+                                <th colspan="2">30 Definitions</th>
+                                <th>Identifiers are grouped by FHIRv3 Data Objects</th>
                             </tr>
                             <tr>
                                 <th>Production elements - STU3</th>
@@ -664,291 +664,305 @@ active-nav: understanding-the-data-nav
                                 <a target="_blank" href="https://bluebutton.cms.gov/resources/variables/prvdr_zip">https://bluebutton.cms.gov/resources/variables/prvdr_zip</a> | 
                                 <a target="_blank" href="https://bluebutton.cms.gov/resources/variables/prvdr_state_cd">https://bluebutton.cms.gov/resources/variables/prvdr_state_cd</a></td>
                             </tr>
-
-
-
-
-
-
-
                             <tr>
-                                <td>ExplanationOfBenefit.careTeam.sequence</td>
-                                <td>Sequence of careteam which serves to order and provide a link.</td>
-                                <td>1..1</td>
-                                <td></td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/datatypes.html#positiveInt">positiveInt</a></td>
+                                <td>eob.item[].locationCodeableConcept.extension[].valueIdentifier</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>system, value</td>
                             </tr>
                             <tr class="bg-white">
-                                <td>ExplanationOfBenefit.careTeam.provider</td>
-                                <td>The members of the team who provided the overall service.</td>
-                                <td>1..1</td>
-                                <td></td>
-                                <td> <a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/references.html#Reference">Reference</a>
-                                    (<a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/practitioner.html">Practitioner</a> |
-                                    <a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/organization.html">Organization</a>)
-                                </td>
+                                <td>eob.item[].locationCodeableConcept.extension[].valueIdentifier.system</td>
+                                <td>URL</td>
+                                <td>[note: Clia lab number]</td>
                             </tr>
                             <tr>
-                                <td>ExplanationOfBenefit.careTeam.responsible</td>
-                                <td>The practitioner who is billing and responsible for the claimed services rendered to
-                                    the
-                                    patient.</td>
-                                <td>0..1</td>
+                                <td>eob.item[].locationCodeableConcept.extension[].valueIdentifier.value</td>
+                                <td>9-digit clia lab number</td>
                                 <td></td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/datatypes.html#boolean">boolean</a>
-                                </td>
+                            </tr>
+                            <tr>
+                                <td class="section-header" colspan="5"><a id="BillablePeriod">Procedure</a></td>
                             </tr>
                             <tr class="bg-white">
-                                <td>ExplanationOfBenefit.careTeam.role</td>
-                                <td>The lead, assisting or supervising practitioner and their discipline if a
-                                    multidisiplinary team.</td>
-                                <td>0..1</td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/valueset-claim-careteamrole.html">Claim Care Team
-                                        Role Codes (Example)</a></td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/datatypes.html#CodeableConcept">CodeableConcept</a>
-                                </td>
+                                <td>eob.procedure[]</td>
+                                <td>Ordered list of patient procedures performed to support the adjudication.</td>
+                                <td>CodeableConcept, Sequence</td>
                             </tr>
                             <tr>
-                                <td>ExplanationOfBenefit.careTeam.qualification </td>
-                                <td>The qualification which is applicable for this service.</td>
-                                <td>0..1</td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/valueset-claim-careteamrole.html">Example
-                                        Provider
-                                        Qualification Codes (Example)</a></td>
-                                <td></td>
+                                <td>eob.procedure[].procedureCodeableConcept</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>coding</td>
                             </tr>
                             <tr class="bg-white">
-                                <td>ExplanationOfBenefit.item.careTeamLinkId</td>
-                                <td>Careteam applicable for this service or product line.</td>
-                                <td>0..*</td>
-                                <td></td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/datatypes.html#positiveInt">positiveInt</a></td>
+                                <td>eob.procedure[].procedureCodeableConcept.coding[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>code, display, system</td>
                             </tr>
                             <tr>
-                                <td class="section-header" colspan="5"><a id="Claims">Claims</a></td>
+                                <td>eob.procedure[].procedureCodeableConcept.coding[].code</td>
+                                <td>Procedure code</td>
+                                <td>3722</td>
                             </tr>
                             <tr class="bg-white">
-                                <td>ExplanationOfBenefit.identifier</td>
-                                <td>The EOB Business Identifier.</td>
-                                <td>0..*</td>
-                                <td></td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/datatypes.html#Identifier">Identifier</a></td>
+                                <td>eob.procedure[].procedureCodeableConcept.coding[].display</td>
+                                <td>Procedure code description</td>
+                                <td>CATARAC PHACOEMULS/ASPIR</td>
                             </tr>
                             <tr>
-                                <td>ExplanationOfBenefit.type</td>
-                                <td>The category of claim, e.g. oral, pharmacy, vision, institutional, professional</td>
-                                <td>1..1</td>
-                                <td><a target="_blank" href="https://hl7.org/fhir/R4/valueset-claim-type.html">Claim
-                                        Type
-                                        Codes</a></td>
-                                <td><a target="_blank"
-                                        href="https://hl7.org/fhir/R4/valueset-claim-type.html">CodeableConcept</a></td>
+                                <td>eob.procedure[].procedureCodeableConcept.coding[].system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="http://hl7.org/fhir/sid/icd-9-cm">http://hl7.org/fhir/sid/icd-9-cm</a></td>
                             </tr>
                             <tr class="bg-white">
-                                <td>ExplanationOfBenefit.item.sequence</td>
-                                <td>A service line number.</td>
-                                <td>1..1</td>
-                                <td></td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/datatypes.html#positiveInt">positiveInt</a></td>
+                                <td>eob.procedure[].sequence</td>
+                                <td>The first code to modify the HCPCS procedure code associated with the claim-line. This provides more specific procedure identification for the line item service.</td>
+                                <td>6,2,3,1,4,5</td>
                             </tr>
                             <tr>
-                                <td class="section-header" colspan="5"><a id="Diagnosis">Diagnosis</a></td>
+                                <td class="section-header" colspan="5"><a id="Services">Services</a></td>
                             </tr>
                             <tr class="bg-white">
-                                <td>ExplanationOfBenefit.diagnosis</td>
-                                <td>Ordered list of patient diagnosis for which care is sought.</td>
-                                <td>0..*</td>
-                                <td></td>
-                                <td></td>
+                                <td>eob.item[].service</td>
+                                <td>The date or dates when the enclosed suite of services were performed or completed.</td>
+                                <td>Coding, Extension</td>
                             </tr>
                             <tr>
-                                <td>ExplanationOfBenefit.diagnosis.sequence </td>
-                                <td>Sequence of diagnosis which serves to provide a link.</td>
-                                <td>1..1</td>
-                                <td></td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/datatypes.html#positiveInt">positiveInt</a></td>
+                                <td>eob.item[].service.coding[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>code, version, system</td>
                             </tr>
                             <tr class="bg-white">
-                                <td>ExplanationOfBenefit.diagnosis.diagnosis[x]</td>
-                                <td>The diagnosis.</td>
-                                <td>1..1</td>
-                                <td><a target="_blank" href="https://hl7.org/fhir/R4/valueset-icd-10.html">ICD-10
-                                        Codes</a>
-                                </td>
-                                <td><a target="_blank"
-                                        href="https://hl7.org/fhir/R4/datatypes.html#CodeableConcept">CodeableConcept |
-                                        Reference (Condition)</a></td>
+                                <td>eob.item[].service.coding[].code</td>
+                                <td>The HCPCS code representing the procedure, supply, product, and/or service provided to the beneficiary.</td>
+                                <td>84155</td>
                             </tr>
                             <tr>
-                                <td>ExplanationOfBenefit.diagnosis.type</td>
-                                <td>The type of the Diagnosis, for example: admitting, primary, secondary, discharge.
-                                </td>
-                                <td>0..*</td>
-                                <td><a target="_blank"
-                                        href="https://hl7.org/fhir/R4/valueset-ex-diagnosistype.html">Example
-                                        Diagnosis Type Codes</a></td>
-                                <td><a target="_blank"
-                                        href="https://hl7.org/fhir/R4/valueset-ex-diagnosis-on-admission.html">CodeableConcept</a>
-                                </td>
+                                <td>eob.item[].service.coding[].system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/codesystem/hcpcs/">https://bluebutton.cms.gov/resources/codesystem/hcpcs/</a></td>
                             </tr>
                             <tr class="bg-white">
-                                <td>ExplanationOfBenefit.diagnosis.packageCode</td>
-                                <td>The package billing code, for example DRG, based on the assigned grouping code
-                                    system.
-                                </td>
-                                <td>0..1</td>
-                                <td><a target="_blank"
-                                        href="https://hl7.org/fhir/R4/valueset-ex-diagnosisrelatedgroup.html">Example
-                                        Diagnosis Related Group Codes</a></td>
-                                <td><a target="_blank"
-                                        href="https://hl7.org/fhir/R4/valueset-claim-type.html">CodeableConcept</a></td>
+                                <td>eob.item[].service.coding[].version</td>
+                                <td>Version of HCPC</td>
+                                <td>"4","9","1","0"</td>
                             </tr>
                             <tr>
-                                <td class="section-header" colspan="5"><a id="Item">Item</a></td>
+                                <td>eob.item[].service.extension[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>url, valueCoding, valueQuantity</td>
                             </tr>
                             <tr class="bg-white">
-                                <td>ExplanationOfBenefit.item.service</td>
-                                <td>If this is an actual service or product line, ie. not a Group, then use code to
-                                    indicate
-                                    the Professional Service or Product supplied (eg. CTP, HCPCS,USCLS,ICD10,
-                                    NCPDP,DIN,ACHI,CCI). If a grouping item then use a group code to indicate the type
-                                    of
-                                    thing being grouped eg. 'glasses' or 'compound'.</td>
-                                <td>0..1</td>
-                                <td><a target="_blank" href="http://hl7.org/fhir/STU3/valueset-service-uscls.html">USCLS
-                                        Codes</a></td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/datatypes.html#CodeableConcept">CodeableConcept</a>
-                                </td>
+                                <td>eob.item[].service.extension[].url</td>
+                                <td>URL</td>
+                                <td>[Note: two URLs provided (NDC, UPC, IDE, anesthesia proc)</td>
                             </tr>
                             <tr>
-                                <td>ExplanationOfBenefit.item.quantity</td>
+                                <td>eob.item[].service.extension[].valueCoding</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>code, system</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.item[].service.extension[].valueCoding.code</td>
+                                <td>Code</td>
+                                <td>code (NDC, UPC, IDE, anesthesia proc)</td>
+                            </tr>
+                            <tr>
+                                <td>eob.item[].service.extension[].valueCoding.system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/variables/rev_cntr_ide_ndc_upc_num/">https://bluebutton.cms.gov/resources/variables/rev_cntr_ide_ndc_upc_num/</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.item[].service.extension[].valueQuantity</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>value</td>
+                            </tr>
+                            <tr>
+                                <td>eob.item[].service.extension[].valueQuantity.value</td>
+                                <td>Number of NDCs, anesthesia procedures</td>
+                                <td>120,41,80,241,22,67,143</td>
+                            </tr>
+                             <tr>
+                                <td class="section-header" colspan="5"><a id="Claim">Claim</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.precedence</td>
+                                <td>Precedence (primary, secondary, etc.).: This indicates the relative order of a series of EOBs related to different coverages for the same suite of services.</td>
+                                <td>0 samples provided</td>
+                            </tr>
+                            <tr>
+                                <td>eob.id</td>
+                                <td>Unique ID of the row in the database</td>
+                                <td>carrier--10161435205</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.identifier[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>system, value</td>
+                            </tr>
+                            <tr>
+                                <td>eob.identifier[].system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/identifier/claim-group">https://bluebutton.cms.gov/resources/identifier/claim-group</a> | 
+                                <a target="_blank" href="https://bluebutton.cms.gov/resources/variables/clm_id">https://bluebutton.cms.gov/resources/variables/clm_id</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.identifier[].value</td>
+                                <td>claim ID and claim Group</td>
+                                <td>-9140814382</td>
+                            </tr>
+                            <tr>
+                                <td>eob.item[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>quantity, sequence</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.item[].quantity</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>value</td>
+                            </tr>
+                            <tr>
+                                <td>eob.item[].quantity.value</td>
                                 <td>The number of repetitions of a service or product.</td>
-                                <td>0..1</td>
-                                <td></td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/datatypes.html#SimpleQuantity">SimpleQuantity</a>
-                                </td>
-                            </tr>
-                            <tr class="bg-white">
-                                <td>ExplanationOfBenefit.item[].serviceDate</td>
-                                <td>The date or dates when the enclosed suite of services were performed or completed.
-                                </td>
-                                <td>0..1</td>
-                                <td></td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/datatypes.html#date">date </a> |
-                                    <a target="_blank" href="http://hl7.org/fhir/STU3/datatypes.html#date">Period</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ExplanationOfBenefit.item[].servicedPeriod</td>
-                                <td>The date or dates when the enclosed suite of services were performed or completed.
-                                </td>
-                                <td>0..1</td>
-                                <td></td>
                                 <td></td>
                             </tr>
                             <tr class="bg-white">
-                                <td>ExplanationOfBenefit.item.location[x]</td>
-                                <td>Where the service was provided.</td>
-                                <td>0..1</td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/valueset-service-place.html">Example
-                                        Service Place Codes (Example)</a></td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/datatypes.html#CodeableConcept">CodeableConcept |
-                                        Address | Reference(Location)</a></td>
+                                <td>eob.item[].sequence</td>
+                                <td>A service line number.</td>
+                                <td></td>
                             </tr>
                             <tr>
+                                <td>eob.billablePeriod.extension[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>url, valueCoding</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.billablePeriod.extension[].url</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/variables/claim_query_cd">https://bluebutton.cms.gov/resources/variables/claim_query_cd</a></td>
+                            </tr>
+                            <tr>
+                                <td>eob.billablePeriod.extension[].valueCoding</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>code, display, system</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.billablePeriod.extension[].valueCoding.code</td>
+                                <td>Code indicating the type of claim record being processed with respect to payment.</td>
+                                <td>1,3,5</td>
+                            </tr>
+                            <tr>
+                                <td>eob.billablePeriod.extension[].valueCoding.display</td>
+                                <td>Description of code indicating the type of claim record being processed with respect to payment.</td>
+                                <td>Interim, Final, Debit</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.billablePeriod.extension[].valueCoding.system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/variables/claim_query_cd">https://bluebutton.cms.gov/resources/variables/claim_query_cd</a></td>
+                            </tr>
+                            <tr>
+                                <td>eob.resourceType</td>
+                                <td>Name of the resource</td>
+                                <td>"explanation of benefit"</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.type</td>
+                                <td>The category of claim, eg, oral, pharmacy, vision, insitutional, professional.</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>eob.type.coding[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>code, display, system</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.type.coding[].code</td>
+                                <td>Signifies the type of claim being submitted through the Medicare or Medicaid programs. </td>
+                                <td>"OUTPATIENT" and codes</td>
+                            </tr>
+                            <tr>
+                                <td>eob.type.coding[].display</td>
+                                <td>Signifies the type of claim being submitted through the Medicare or Medicaid programs. </td>
+                                <td>Local carrier DMEPOS claim</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.type.coding[].system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/variables/nch_near_line_rec_ident_cd">https://bluebutton.cms.gov/resources/variables/nch_near_line_rec_ident_cd</a> | 
+                                <a target="_blank" href="https://bluebutton.cms.gov/resources/variables/clm_srvc_clsfctn_type_cd">https://bluebutton.cms.gov/resources/variables/clm_srvc_clsfctn_type_cd</a> | 
+                                <a target="_blank" href="https://bluebutton.cms.gov/resources/variables/nch_clm_type_cd">https://bluebutton.cms.gov/resources/variables/nch_clm_type_cd</a> | 
+                                <a target="_blank" href="https://bluebutton.cms.gov/resources/codesystem/eob-type">https://bluebutton.cms.gov/resources/codesystem/eob-type</a> | 
+                                <a target="_blank" href="http://hl7.org/fhir/ex-claimtype">http://hl7.org/fhir/ex-claimtype</a></td>
+                            </tr>
+                            <tr>
+                                <td class="section-header" colspan="5"><a id="Claim">Patient</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.patient</td>
+                                <td>Patient resource</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>eob.patient.reference</td>
+                                <td>Medicare Beneficiary ID</td>
+                                <td>null</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.extension[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>url, valueIdentifier</td>
+                            </tr>
+                            <tr>
+                                <td>eob.extension[].url</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="http://hl7.org/fhir/R4/extension-elementdefinition-identifier.html">http://hl7.org/fhir/R4/extension-elementdefinition-identifier.html</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.extension[].valueIdentifier</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>extension, system, value</td>
+                            </tr>
+                            <tr>
+                                <td>eob.extension[].valueIdentifier.extension[]</td>
+                                <td>[ list of objects ] 0,1, or more objects</td>
+                                <td>url, valueCoding</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.extension[].valueIdentifier.extension[].url</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="https://bluebutton.cms.gov/resources/codesystem/identifier-currency/">https://bluebutton.cms.gov/resources/codesystem/identifier-currency/</a></td>
+                            </tr>
+                            <tr>
+                                <td>eob.extension[].valueIdentifier.extension[].valueCoding</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>code</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.extension[].valueIdentifier.extension[].valueCoding.code</td>
+                                <td>MBI current/historic indicator</td>
+                                <td>current, historic</td>
+                            </tr>
+                            <tr>
+                                <td>eob.extension[].valueIdentifier.system</td>
+                                <td>URL</td>
+                                <td><a target="_blank" href="http://hl7.org/fhir/sid/us-mbi">http://hl7.org/fhir/sid/us-mbi</a></td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td>eob.extension[].valueIdentifier.value</td>
+                                <td>Current and Historical MBIs (can be duplicates)</td>
+                                <td>null</td>
+                            </tr>
+                             <tr>
                                 <td class="section-header" colspan="5"><a id="Meta">Meta</a></td>
                             </tr>
                             <tr class="bg-white">
-                                <td>ExplanationOfBenefit.meta.lastUpdated</td>
+                                <td>eob.meta</td>
+                                <td>[ object ] Top level container of related data fields</td>
+                                <td>lastUpdated</td>
+                            </tr>
+                            <tr>
+                                <td>eob.meta.lastUpdated</td>
                                 <td>Data to indicate the time the data was last updated</td>
-                                <td>0..1</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td class="section-header" colspan="5"><a id="Procedure">Procedure</a></td>
-                            </tr>
-                            <tr class="bg-white">
-                                <td>ExplanationOfBenefit.procedure</td>
-                                <td>Ordered list of patient procedures performed to support the adjudication.</td>
-                                <td>0..*</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>ExplanationOfBenefit.procedure.sequence </td>
-                                <td>Sequence of procedures which serves to order and provide a link.</td>
-                                <td>1..1</td>
-                                <td></td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/datatypes.html#positiveInt">positiveInt</a></td>
-                            </tr>
-                            <tr class="bg-white">
-                                <td>ExplanationOfBenefit.procedure.date</td>
-                                <td>Date and optionally time the procedure was performed.</td>
-                                <td>0..1</td>
-                                <td></td>
-                                <td><a target="_blank"
-                                        href="https://hl7.org/fhir/R4/datatypes.html#dateTime">dateTime</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ExplanationOfBenefit.procedure.procedure[x]</td>
-                                <td>The procedure code.</td>
-                                <td>1..1</td>
-                                <td><a target="_blank"
-                                        href="https://hl7.org/fhir/R4/valueset-icd-10-procedures.html">ICD-10
-                                        Procedure Codes</a></td>
-                                <td><a target="_blank"
-                                        href="https://hl7.org/fhir/R4/datatypes.html#CodeableConcept">CodeableConcept|Reference(Procedure)
-                                    </a></td>
-                            </tr>
-                            <tr>
-                                <td class="section-header" colspan="5"><a id="Provider">Provider</a></td>
-                            </tr>
-                            <tr class="bg-white">
-                                <td>ExplanationOfBenefit.provider </td>
-                                <td>The provider which is responsible for the claim.</td>
-                                <td>0..1</td>
-                                <td></td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/practitioner.html">Reference(Practitioner)</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>ExplanationOfBenefit.organization</td>
-                                <td>The provider which is responsible for the claim.</td>
-                                <td>0..1</td>
-                                <td></td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/organization.html">Reference(Organization)</a>
-                                </td>
-                            </tr>
-                            <tr class="bg-white">
-                                <td>ExplanationOfBenefit.facility</td>
-                                <td>Facility where the services were provided.</td>
-                                <td>0..1</td>
-                                <td></td>
-                                <td><a target="_blank"
-                                        href="http://hl7.org/fhir/STU3/location.html">Reference(Location)</a>
-                                </td>
+                                <td>2020-11-09T22:51:16.152+00:00</td>
                             </tr>
                         </tbody>
                     </table>
