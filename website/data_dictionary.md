@@ -218,7 +218,7 @@ active-nav: understanding-the-data-nav
     </a>
     <div class="container bg-light-grey">
         <div class="row">
-            <div class="col-lg-6 step-claims-menu-col" style="max-width: 250px;">
+            <div class="col-lg-3 col-md-2 step-claims-menu-col">
                 <div class="step-claims-menu">
                     <div id="dates" class="step-accessing-claims step-accessing-claims-active">
                         Dates <span class="step-claims-dash"></span>
@@ -252,7 +252,7 @@ active-nav: understanding-the-data-nav
                     </div>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-lg-9 col-md-10">
                 <div class="data-table-wrapper">
                     <table class="data-table">
                         <thead>
