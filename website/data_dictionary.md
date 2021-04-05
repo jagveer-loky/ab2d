@@ -46,6 +46,10 @@ active-nav: understanding-the-data-nav
         border-bottom: 1px solid;
     }
 
+    table thead tr:last-child th{
+        padding: 16px 8px;
+    }
+
     table .top-header :last-child {
         color: #4e5b6b;
         font-style: italic;
@@ -56,14 +60,15 @@ active-nav: understanding-the-data-nav
 
     table .top-header {
         color: black;
-        background-color: white;
-        font-size: 18px;
-        letter-spacing: 0.5px;
-
     }
 
     table .top-header th {
+        font-size: 20px;
         padding: 20px 5px;
+        font-weight: 600;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    text-transform: initial;
+    letter-spacing: 0.5px;
     }
 
     table tbody tr td,
@@ -76,6 +81,11 @@ active-nav: understanding-the-data-nav
         letter-spacing: 1px;
         color: white;
         text-align: left;
+        text-transform: uppercase;
+        font-weight: 550;
+        font-size: 12px;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
     }
 
     table tbody tr td.section-header a {
@@ -125,6 +135,10 @@ active-nav: understanding-the-data-nav
 
     .show {
         display: block !important;
+    }
+
+    .step-accessing-claims{ 
+        font-weight: 600 !important;
     }
 </style>
 
@@ -216,9 +230,9 @@ active-nav: understanding-the-data-nav
     <a href="#Top" id="scroll-to-top">
         <i class="fas fa-chevron-up"></i>
     </a>
-    <div class="container bg-light-grey">
+    <div class="container-sm bg-light-grey">
         <div class="row">
-            <div class="col-lg-3 col-md-2 step-claims-menu-col">
+            <div class="col-lg-2 col-md-2 step-claims-menu-col">
                 <div class="step-claims-menu">
                     <div id="dates" class="step-accessing-claims step-accessing-claims-active">
                         Dates <span class="step-claims-dash"></span>
@@ -252,12 +266,12 @@ active-nav: understanding-the-data-nav
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9 col-md-10">
+            <div class="col-lg-10 col-md-10 col-sm-12 ">
                 <div class="data-table-wrapper">
                     <table class="data-table">
                         <thead>
                             <tr class="top-header">
-                                <th colspan="2">30 Definitions</th>
+                                <th colspan="2">143 Definitions</th>
                                 <th>Identifiers are grouped by FHIRv3 Data Objects</th>
                             </tr>
                             <tr>
